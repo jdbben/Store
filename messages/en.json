@@ -1,0 +1,17 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "button": {
+    "title": "OPEN CATEGORY >"
+  },
+  "NavegationLinks": {
+    "about": "ABOUT",
+    "contact": "CONTACT",
+    "home": "HOME"
+  },
+  "NaveTitel": {
+    "title": "We Create Art"
+  }
+}

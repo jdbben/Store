@@ -1,0 +1,17 @@
+{
+  "HomePage": {
+    "title": "Bonjour le monde !",
+    "about": "Aller à la page À propos"
+  },
+  "button": {
+    "title": "OUVRIR LA CATÉGORIE >"
+  },
+  "NavegationLinks": {
+    "about": "À PROPOS",
+    "contact": "CONTACT",
+    "home": "HOME"
+  },
+  "NaveTitel": {
+    "title": "Nous créons de l'art"
+  }
+}
