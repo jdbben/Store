@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "./globals.css";
 import { Locale, routing } from "@/i18n/routing";
 import Navigate from "@/components/Navigate";
+import Nav from "@/components/Nav";
 
 export default async function LocaleLayout({
   children,
@@ -26,7 +27,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          {/* <Navigate /> */}
+          {/*  */}
           {children}
         </NextIntlClientProvider>
       </body>

@@ -2,6 +2,7 @@
 
 import ImageWrapper from "@/components/ImageWrapper";
 import Moveto from "@/components/Moveto";
+import Navigate from "@/components/Navigate";
 import { objct } from "@/lib/const";
 import { motion, useScroll, useSpring } from "motion/react";
 import { useRef } from "react";
@@ -21,6 +22,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-1 justify-center items-center ">
+      <Navigate />
       <div className="flex flex-row w-screen ">
         <div className=" absolute left-[23vh] top-[47vh] z-50 h-fit w-fit">
           <Moveto className="" containerRef={containerRef} />

@@ -16,6 +16,10 @@ export const routing = defineRouting({
       en: "/about",
       fr: "/àpropos",
     },
+    "/[collection]": {
+      en: "/[collection]",
+      fr: "/[collection]",
+    },
   },
 });
 

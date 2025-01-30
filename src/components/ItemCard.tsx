@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 
 interface Prop {
+  collection?: string;
   className?: string;
   price: number;
   title: string;
@@ -20,7 +21,15 @@ interface Prop {
   }[];
 }
 
-const ItemCard = ({ price, title, id, size, colors, className }: Prop) => {
+const ItemCard = ({
+  price,
+  title,
+  id,
+  size,
+  colors,
+  className,
+  collection,
+}: Prop) => {
   const [option, setOption] = useState(colors[0]);
 
   const t = useTranslations("ProductDetailsCard");
