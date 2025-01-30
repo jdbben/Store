@@ -20,15 +20,15 @@ export default function Page() {
   });
 
   return (
-    <div className="flex flex-1 ">
-      <div className="flex flex-row w-screen relative">
-        <div className=" absolute left-[23vh] top-[47vh] z-50">
+    <div className="flex flex-1 justify-center items-center ">
+      <div className="flex flex-row w-screen ">
+        <div className=" absolute left-[23vh] top-[47vh] z-50 h-fit w-fit">
           <Moveto className="" containerRef={containerRef} />
         </div>
         <div
           ref={containerRef}
           id="example"
-          className="snap-y snap-mandatory h-[100vh] overflow-y-scroll left-0 w-full pl-[25vh] relative
+          className="snap-y snap-mandatory h-[100vh] overflow-y-scroll left-0 w-full pl-[25vh] 
           
       "
         >

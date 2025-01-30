@@ -9,9 +9,13 @@
   "NavegationLinks": {
     "about": "À PROPOS",
     "contact": "CONTACT",
-    "home": "HOME"
+    "home": "ACCUEIL"
   },
   "NaveTitel": {
     "title": "Nous créons de l'art"
+  },
+  "ProductDetailsCard": {
+    "size": "Tailles disponibles",
+    "color": "Couleurs disponibles"
   }
 }

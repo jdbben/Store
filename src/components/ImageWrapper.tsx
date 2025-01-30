@@ -1,15 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
-import {
-  motion,
-  type MotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "motion/react";
+import { type MotionValue, useScroll, useTransform } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
-import Moveto from "./Moveto";
+import { useRef } from "react";
 
 interface Prop {
   img: string;
@@ -18,20 +11,13 @@ interface Prop {
   index: number;
   bg: string;
 }
-const useParallax = (value: MotionValue<number>, distance: number) => {
-  return useTransform(value, [0, 1], [-distance, distance]);
-};
 
 const ImageWrapper = ({ img, title, description, index, bg }: Prop) => {
   const t = useTranslations("button");
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const y = useParallax(scrollYProgress, 300);
 
   return (
     <section>
       <div
-        ref={ref}
         key={index}
         className={cn(
           " h-[100vh] snap-start flex justify-center items-center  relative"

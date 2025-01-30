@@ -13,5 +13,9 @@
   },
   "NaveTitel": {
     "title": "We Create Art"
+  },
+  "ProductDetailsCard": {
+    "size": "Available Sizes",
+    "color": "Available Colors"
   }
 }
