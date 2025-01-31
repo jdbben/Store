@@ -10,7 +10,6 @@ const page = () => {
   const [collectionCheck, setCollectionCheck] = useState<
     Category[] | undefined
   >([]);
-  //need to change
 
   useEffect(() => {
     let dublecations: Category[] = [];
