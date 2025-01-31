@@ -5,7 +5,7 @@ const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <div>
       <MaxWidthWrapper>
-        <Nav />
+        {/* <Nav /> */}
         {children}
       </MaxWidthWrapper>
     </div>

@@ -1,10 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { RadioGroup } from "@headlessui/react";
-import { button } from "motion/react-client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { Label } from "@/components/ui/label";
 
 interface Prop {
   collection?: string;
@@ -36,7 +34,7 @@ const ItemCard = ({
   return (
     <div
       className={cn(
-        `flex flex-col justify-center items-center h-[500px] w-[250px] overflow-hidden  border-2 border-gray-400 rounded-2xl ${className}`
+        `flex flex-col justify-center items-center h-[500px] w-[250px] overflow-hidden  border-2 border-gray-400 rounded-2xl hover:scale-105 transition duration-100${className}`
       )}
     >
       {" "}
