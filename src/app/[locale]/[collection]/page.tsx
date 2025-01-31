@@ -4,12 +4,15 @@ import { Category, objct, PRODUCT } from "@/lib/const";
 import { useEffect } from "react";
 import { useState } from "react";
 import { FixedSizeGrid as Grid } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 const page = () => {
   const [collection, setCollection] = useState<string>("");
   const [collectionCheck, setCollectionCheck] = useState<
     Category[] | undefined
   >([]);
+
+  const [ItemsperRowState, setItemsperRowStart] = useState(1);
 
   useEffect(() => {
     let dublecations: Category[] = [];
@@ -29,26 +32,73 @@ const page = () => {
       window.location.pathname.includes(item);
       setCollection(item);
     });
+
+    const updateItemsPerRow = () => {
+      const width = window.innerWidth;
+
+      if (width >= 640 && width < 768) setItemsperRowStart(1);
+      else if (width >= 768 && width < 1024) setItemsperRowStart(3);
+      else if (width >= 1024) setItemsperRowStart(4);
+    };
+
+    updateItemsPerRow();
+    window.addEventListener("resize", updateItemsPerRow);
+
+    return () => window.removeEventListener("resize", updateItemsPerRow);
   }, []);
 
+  const filteredProducts = PRODUCT.filter(
+    (Product) => Product.collection === collection
+  );
   return (
-    <div className="h-full w-full m-5 flex flex-wrap justify-center gap-3 lg:gap-5">
-      {PRODUCT.map((Product, index) =>
-        Product.collection === collection ? (
-          <ItemCard
-            collection={collection}
-            className=""
-            id={Product.id}
-            price={Product.price}
-            title={Product.title}
-            size={Product.size}
-            colors={Product.colors}
-            key={index + Product.id}
-          />
-        ) : null
-      )}
+    <div className="h-screen w-full">
+      <AutoSizer>
+        {({ height, width }) => {
+          const itemsPerRow = ItemsperRowState;
+          const rowCount = Math.ceil(filteredProducts.length / itemsPerRow);
+          const columnCount = itemsPerRow;
+
+          return (
+            <Grid
+              columnCount={columnCount}
+              columnWidth={width / itemsPerRow}
+              height={height}
+              rowCount={rowCount}
+              rowHeight={520}
+              width={width}
+              className=""
+            >
+              {({ columnIndex, rowIndex, style }) => {
+                const index = rowIndex * itemsPerRow + columnIndex;
+                const product = filteredProducts[index];
+
+                if (product) {
+                  return (
+                    <div
+                      style={style}
+                      key={product.id}
+                      className="flex flex-wrap justify-center gap-3"
+                    >
+                      <ItemCard
+                        collection={collection}
+                        className=""
+                        id={product.id}
+                        price={product.price}
+                        title={product.title}
+                        size={product.size}
+                        colors={product.colors}
+                      />
+                    </div>
+                  );
+                }
+              }}
+            </Grid>
+          );
+        }}
+      </AutoSizer>
     </div>
   );
 };
 
 export default page;
+//test
