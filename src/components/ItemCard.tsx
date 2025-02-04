@@ -1,11 +1,12 @@
 "use client";
+import { useRouter, redirect } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { RadioGroup } from "@headlessui/react";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useTranslations, useFormatter } from "next-intl";
+import { useState, MouseEvent } from "react";
 
 interface Prop {
-  collection?: string;
+  collection: string;
   className?: string;
   price: number;
   title: string;
@@ -29,13 +30,22 @@ const ItemCard = ({
   collection,
 }: Prop) => {
   const [option, setOption] = useState(colors[0]);
-
+  const format = useFormatter();
   const t = useTranslations("ProductDetailsCard");
+  const { push } = useRouter();
+
+  const NavigateTo = () => {
+    push({
+      pathname: "/[collection]/[product]",
+      params: { collection: collection, product: `${id}-${title}` },
+    });
+  };
   return (
     <div
       className={cn(
-        `flex flex-col justify-center items-center h-[500px] w-[250px] overflow-hidden  border-2 border-gray-400 rounded-2xl hover:scale-105 transition duration-100${className}`
+        `flex flex-col justify-center items-center h-[550px] w-[250px] overflow-hidden  border-2 border-gray-400 rounded-2xl hover:scale-105 transition duration-100${className}`
       )}
+      onClick={() => NavigateTo()}
     >
       {" "}
       <div className="h-full w-full justify-center items-center flex  p-1 overflow-hidden ">
@@ -81,6 +91,7 @@ const ItemCard = ({
             onChange={(val) => {
               setOption(val);
             }}
+            data-value={option}
           >
             <div className="mt-3 flex items-center space-x-3 ">
               {colors.map((color, index) => (
@@ -97,7 +108,6 @@ const ItemCard = ({
                   <span
                     style={{ backgroundColor: color.tw }}
                     className={cn(
-                      // `bg-[${color.tw}]`,
                       "h-8 w-8 rounded-full border border-black border-opacity-10 "
                     )}
                   />
@@ -105,6 +115,11 @@ const ItemCard = ({
               ))}
             </div>
           </RadioGroup>
+        </div>
+        <div>
+          <p className="pl-4">
+            {format.number(price, { style: "currency", currency: "USD" })}
+          </p>
         </div>
       </div>
     </div>

@@ -1,8 +1,15 @@
+import { cn } from "@/lib/utils";
 import LocaleSwitcher from "./LocaleSwitcher";
-
-const Nav = () => {
+interface Prop {
+  className: string;
+}
+const Nav = ({ className }: Prop) => {
   return (
-    <div className="h-[8vh] w-full justify-center items-center mx-auto p-3 ">
+    <div
+      className={cn(
+        `h-[8vh] w-full justify-center items-center mx-auto p-3 ${className}`
+      )}
+    >
       <LocaleSwitcher />
     </div>
   );

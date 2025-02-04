@@ -1,5 +1,5 @@
 "use client";
-import { Link, useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
@@ -13,8 +13,6 @@ interface Prop {
 
 const ImageWrapper = ({ img, title, description, index, bg }: Prop) => {
   const t = useTranslations("button");
-
-  const router = useRouter();
 
   return (
     <section>

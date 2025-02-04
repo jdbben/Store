@@ -20,6 +20,10 @@ export const routing = defineRouting({
       en: "/[collection]",
       fr: "/[collection]",
     },
+    "/[collection]/[product]": {
+      en: "/[collection]/[product]",
+      fr: "/[collection]/[product]",
+    },
   },
 });
 

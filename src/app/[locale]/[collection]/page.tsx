@@ -1,10 +1,11 @@
 "use client";
 import ItemCard from "@/components/ItemCard";
-import { Category, objct, PRODUCT } from "@/lib/const";
-import { useEffect } from "react";
-import { useState } from "react";
-import { FixedSizeGrid as Grid } from "react-window";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Nav from "@/components/Nav";
+import { Category, PRODUCT } from "@/lib/const";
+import { useEffect, useState } from "react";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { FixedSizeGrid as Grid } from "react-window";
 
 const page = () => {
   const [collection, setCollection] = useState<string>("");
@@ -50,53 +51,56 @@ const page = () => {
   const filteredProducts = PRODUCT.filter(
     (Product) => Product.collection === collection
   );
+
   return (
-    <div className="h-screen w-full">
-      <AutoSizer>
-        {({ height, width }) => {
-          const itemsPerRow = ItemsperRowState;
-          const rowCount = Math.ceil(filteredProducts.length / itemsPerRow);
-          const columnCount = itemsPerRow;
+    <MaxWidthWrapper>
+      <div className="h-screen w-full">
+        <AutoSizer>
+          {({ height, width }) => {
+            const itemsPerRow = ItemsperRowState;
+            const rowCount = Math.ceil(filteredProducts.length / itemsPerRow);
+            const columnCount = itemsPerRow;
 
-          return (
-            <Grid
-              columnCount={columnCount}
-              columnWidth={width / itemsPerRow}
-              height={height}
-              rowCount={rowCount}
-              rowHeight={520}
-              width={width}
-              className=""
-            >
-              {({ columnIndex, rowIndex, style }) => {
-                const index = rowIndex * itemsPerRow + columnIndex;
-                const product = filteredProducts[index];
+            return (
+              <Grid
+                columnCount={columnCount}
+                columnWidth={width / itemsPerRow}
+                height={height}
+                rowCount={rowCount}
+                rowHeight={570}
+                width={width}
+                className=""
+              >
+                {({ columnIndex, rowIndex, style }) => {
+                  const index = rowIndex * itemsPerRow + columnIndex;
+                  const product = filteredProducts[index];
 
-                if (product) {
-                  return (
-                    <div
-                      style={style}
-                      key={product.id}
-                      className="flex flex-wrap justify-center gap-3"
-                    >
-                      <ItemCard
-                        collection={collection}
-                        className=""
-                        id={product.id}
-                        price={product.price}
-                        title={product.title}
-                        size={product.size}
-                        colors={product.colors}
-                      />
-                    </div>
-                  );
-                }
-              }}
-            </Grid>
-          );
-        }}
-      </AutoSizer>
-    </div>
+                  if (product) {
+                    return (
+                      <div
+                        style={style}
+                        key={product.id}
+                        className="flex flex-wrap justify-center gap-3"
+                      >
+                        <ItemCard
+                          collection={collection}
+                          className=""
+                          id={product.id}
+                          price={product.price}
+                          title={product.title}
+                          size={product.size}
+                          colors={product.colors}
+                        />
+                      </div>
+                    );
+                  }
+                }}
+              </Grid>
+            );
+          }}
+        </AutoSizer>
+      </div>
+    </MaxWidthWrapper>
   );
 };
 
